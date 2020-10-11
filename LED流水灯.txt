@@ -1,0 +1,55 @@
+#include<reg52.h>
+#include<intrins.h>
+#include<stdio.h>
+int i =65535;
+unsigned char temp;
+int time=10;
+void delay( unsigned int z){
+    unsigned int x,y;
+	  for(x=z;x>0;x--)
+	      for(y=114;y>0;y--);
+	
+}
+void main(){
+	temp = 0xfe;
+	P1 = temp;
+	delay(100);
+while(1){
+	while(time){
+		temp = _crol_(temp,1);
+		P1=temp;
+	  delay(100);
+		time--;
+	}
+	time=10;
+	while(time){
+		temp = _cror_(temp,1);
+		P1=temp;
+	  delay(100);
+		time--;
+	}
+	time=10;
+	while(time){
+		temp = _crol_(temp,2);
+		P1=temp;
+	  delay(100);
+		time--;
+	}
+	time=10;
+	while(time){
+		temp = _cror_(temp,2);
+		P1=temp;
+	  delay(100);
+		time--;
+	}
+	time=1;
+			temp = 0xfe;
+	while(time){
+		P1=temp;
+	  delay(100);
+		temp=temp<<1;
+		time--;
+	}
+		temp = 0xfe;
+}
+}
