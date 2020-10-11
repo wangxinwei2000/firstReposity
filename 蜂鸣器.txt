@@ -1,0 +1,31 @@
+#include<reg52.h>
+#include<intrins.h>
+#include<stdio.h>
+
+unsigned char temp;
+sbit beep=P2^3;
+sbit DU = P2^6;
+sbit WE = P2^7;
+void delay( unsigned int z){
+    unsigned int x,y;
+	  for(x=z;x>0;x--)
+					for(y=114;y>0;y--);
+	
+}
+void main(){
+	temp = 0xf0;
+	P1 = temp;
+	delay(100);
+while(1){
+	temp = _crol_(temp,1);
+	P1 =temp;
+  beep = ~beep;
+	delay(100);
+	beep = ~beep;
+	delay(100);
+	P0=0x06;
+	delay(200);
+	P0=0x4f;
+	delay(200);
+}
+}
